@@ -8,9 +8,10 @@ import (
 	"sync"
 )
 
-const baseUrl = "https://hacker-news.firebaseio.com/v0/"
+const baseURL = "https://hacker-news.firebaseio.com/v0/"
 const suffix = ".json"
 
+// GetItem retrieves an item.
 func GetItem(id int) (*Item, error) {
 	data, err := query(fmt.Sprintf("item/%d", id))
 	if err != nil {
@@ -26,6 +27,7 @@ func GetItem(id int) (*Item, error) {
 	return item, nil
 }
 
+// GetUser retrieves an user.
 func GetUser(id string) (*User, error) {
 	data, err := query(fmt.Sprintf("user/%s", id))
 	if err != nil {
@@ -41,14 +43,17 @@ func GetUser(id string) (*User, error) {
 	return user, nil
 }
 
+// GetTopStories retrieves the top stories.
 func GetTopStories(n int) ([]*Item, error) {
 	return queryAll("topstories", n)
 }
 
+// GetNewStories retrieves the new stories.
 func GetNewStories(n int) ([]*Item, error) {
 	return queryAll("newstories", n)
 }
 
+// GetBestStories retrieves the best stories.
 func GetBestStories(n int) ([]*Item, error) {
 	return queryAll("beststories", n)
 }
@@ -91,7 +96,7 @@ func queryAll(path string, n int) ([]*Item, error) {
 }
 
 func query(path string) ([]byte, error) {
-	res, err := http.Get(baseUrl + path + suffix)
+	res, err := http.Get(baseURL + path + suffix)
 	if err != nil {
 		return nil, err
 	}

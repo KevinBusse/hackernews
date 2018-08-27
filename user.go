@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// User represents the user data
 type User struct {
 	ID        string `json:"id"`        // The user's unique username. Case-sensitive. Required.
 	Delay     int    `json:"delay"`     // Delay in minutes between a comment's creation and its visibility to other users.

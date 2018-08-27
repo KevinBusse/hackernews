@@ -2,7 +2,7 @@ package hackernews
 
 import "fmt"
 
-// Stories, comments, jobs, Ask HNs and even polls are just items.
+// Item represents stories, comments, jobs, Ask HNs and even polls are just items.
 type Item struct {
 	ID          int    `json:"id"`          // The item's unique id.
 	Deleted     bool   `json:"deleted"`     // true if the item is deleted.
@@ -14,7 +14,7 @@ type Item struct {
 	Parent      int    `json:"parent"`      // The comment's parent: either another comment or the relevant story.
 	Poll        int    `json:"poll"`        // The pollopt's associated poll.
 	Kids        []int  `json:"kids"`        // The ids of the item's comments, in ranked display order.
-	Url         string `json:"url"`         // The URL of the story.
+	URL         string `json:"url"`         // The URL of the story.
 	Score       int    `json:"score"`       // The story's score, or the votes for a pollopt.
 	Title       string `json:"title"`       // The title of the story, poll or job.
 	Parts       []int  `json:"parts"`       // A list of related pollopts, in display order.
@@ -22,8 +22,8 @@ type Item struct {
 }
 
 func (i Item) String() string {
-	if i.Url != "" {
-		return fmt.Sprintf("#%d %s %s", i.ID, i.Title, i.Url)
+	if i.URL != "" {
+		return fmt.Sprintf("#%d %s %s", i.ID, i.Title, i.URL)
 	}
 	return fmt.Sprintf("#%d %s", i.ID, i.Title)
 }
