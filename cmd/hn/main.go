@@ -20,7 +20,8 @@ func main() {
 	switch {
 	case len(args) > 1 && args[0] == "user":
 		fmt.Println("User")
-		user, err := hackernews.GetUser(args[1])
+		var user *hackernews.User
+		user, err = hackernews.GetUser(args[1])
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
